@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Eight Eight Studio — Bold brands. Sharp digital. Coming soon." />
   <meta name="theme-color" content="#080808" />
-  <title>Eight Eight Studio - Coming Soon</title>
+  <title>Eight Eight Studio — Coming Soon</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +17,7 @@
   <canvas id="bgCanvas"></canvas>
   <div class="scanlines"></div>
 
-  <!-- ══ GLASS HEADER ══ -->
+  <!-- ══ HEADER ══ -->
   <header class="header" id="header">
     <div class="header-glass">
       <div class="hg-wordmark">
@@ -29,14 +29,13 @@
         </div>
       </div>
       <nav class="hg-nav">
+        <!-- Instagram only -->
         <a href="https://www.instagram.com/eighteightagency/" target="_blank" rel="noopener" class="hg-icon-link" aria-label="Instagram">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
+        <!-- LinkedIn only -->
         <a href="https://www.linkedin.com/company/eighteightstudio" target="_blank" rel="noopener" class="hg-icon-link" aria-label="LinkedIn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61587175742097" target="_blank" rel="noopener" class="hg-icon-link" aria-label="Facebook">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
       </nav>
     </div>
@@ -49,119 +48,99 @@
   <main class="hero">
     <div class="hero-inner">
 
-      <!-- Status pill -->
       <div class="status-pill">
         <span class="sp-dot"></span>
         <span>Under Development</span>
       </div>
 
-      <!-- Headline -->
+      <!-- Headline: "WE BUILD" smaller, "BRANDS" large, "THAT DOMINATE." medium -->
       <h1 class="headline">
         <span class="hl hl-1">We Build</span>
         <span class="hl hl-2"><em>Brands</em></span>
         <span class="hl hl-3">That Dominate.</span>
       </h1>
 
-      <!-- Subtext -->
+      <!-- Subtitle rewritten, 3 lines max, no em-dashes -->
       <p class="subtext">
-        Eight Eight Studio is crafting a digital experience worth the wait.<br class="br-hide" />
-        Branding · Web · Social · Motion — done boldly.
+        Eight Eight Studio is a creative agency building bold brands,
+        sharp web experiences, and content that actually lands.
+        We are almost ready.
       </p>
 
-      <!-- ══ TICKER ══ -->
-      <div class="ticker-wrap">
-        <div class="ticker-track">
-          <span>COMING SOON</span><span class="tx">✦</span>
-          <span>EIGHT EIGHT STUDIO</span><span class="tx">✦</span>
-          <span>BRANDING</span><span class="tx">✦</span>
-          <span>WEB DESIGN</span><span class="tx">✦</span>
-          <span>SOCIAL MEDIA</span><span class="tx">✦</span>
-          <span>MOTION</span><span class="tx">✦</span>
-          <span>IDENTITY</span><span class="tx">✦</span>
-          <span>STRATEGY</span><span class="tx">✦</span>
-          <!-- duplicate for seamless loop -->
-          <span>COMING SOON</span><span class="tx">✦</span>
-          <span>EIGHT EIGHT STUDIO</span><span class="tx">✦</span>
-          <span>BRANDING</span><span class="tx">✦</span>
-          <span>WEB DESIGN</span><span class="tx">✦</span>
-          <span>SOCIAL MEDIA</span><span class="tx">✦</span>
-          <span>MOTION</span><span class="tx">✦</span>
-          <span>IDENTITY</span><span class="tx">✦</span>
-          <span>STRATEGY</span><span class="tx">✦</span>
-        </div>
+      <!-- ══ SCROLL-REVEAL CHIPS ══ -->
+      <div class="chips-row" id="chipsRow">
+        <span class="chip" data-delay="0">COMING SOON</span>
+        <span class="chip chip-accent" data-delay="80">88 STUDIO</span>
+        <span class="chip" data-delay="160">BRANDING</span>
+        <span class="chip" data-delay="240">WEB DESIGN</span>
+        <span class="chip" data-delay="320">SOCIAL MEDIA</span>
+        <span class="chip" data-delay="400">MOTION</span>
+        <span class="chip" data-delay="480">IDENTITY</span>
+        <span class="chip" data-delay="560">STRATEGY</span>
+        <span class="chip" data-delay="640">KOLKATA</span>
+        <span class="chip chip-accent" data-delay="720">GLOBAL</span>
       </div>
 
-      <!-- ══ NOTIFY CARD — glass grid box ══ -->
-      <div class="notify-card" id="notifyBox">
+      <!-- ══ NOTIFY CARD ══ -->
+      <div class="notify-card" id="notifyCard">
 
-        <!-- Card header row -->
+        <!-- Card header -->
         <div class="nc-header">
           <div class="nc-title-group">
             <span class="nc-eyebrow">
               <span class="nc-dot"></span>
               GET EARLY ACCESS
             </span>
-            <p class="nc-sub">Drop your details — we'll reach out the moment we launch.</p>
+            <p class="nc-sub">Drop your details and be first to know when we go live.</p>
           </div>
-          <div class="nc-badge">88</div>
+          <span class="nc-badge">88</span>
         </div>
 
-        <!-- Divider -->
         <div class="nc-divider"></div>
 
-        <!-- Form grid -->
+        <!-- Form -->
         <form class="nc-form" id="nbForm" onsubmit="handleNotify(event)">
-
-          <!-- Row 1: Name + Business side by side -->
           <div class="nc-grid">
             <div class="nc-field">
               <label class="nc-label" for="nameInput">Name *</label>
               <input type="text" id="nameInput" class="nc-input" placeholder="Your name" autocomplete="off" required />
             </div>
             <div class="nc-field">
-              <label class="nc-label" for="bizInput">Business / Brand</label>
+              <label class="nc-label" for="bizInput">Business</label>
               <input type="text" id="bizInput" class="nc-input" placeholder="Optional" autocomplete="off" />
             </div>
           </div>
-
-          <!-- Row 2: Email full width -->
           <div class="nc-field">
             <label class="nc-label" for="emailInput">Email *</label>
             <input type="email" id="emailInput" class="nc-input" placeholder="your@email.com" autocomplete="off" required />
           </div>
-
-          <!-- Submit -->
           <button type="submit" class="nc-btn" id="nbBtn">
-            <span id="nbBtnText">Notify Me When We Launch</span>
+            <span id="nbBtnText">Notify Me</span>
             <span class="nc-arrow">→</span>
           </button>
-
         </form>
 
-        <!-- Success state -->
+        <!-- Success -->
         <div class="nc-success" id="nbSuccess">
           <span class="nc-success-icon">✦</span>
           <div>
-            <p class="nc-success-title">You're on the list.</p>
-            <p class="nc-success-sub">We'll be in touch when it's time.</p>
+            <p class="nc-success-title">You are on the list.</p>
+            <p class="nc-success-sub">We will be in touch when it is time.</p>
           </div>
         </div>
 
-        <!-- Card footer: socials inside the card -->
         <div class="nc-divider"></div>
-        <div class="nc-footer">
-          <span class="nc-footer-label">FOLLOW US</span>
-          <div class="nc-socials">
-            <a href="https://www.instagram.com/eighteightagency/" target="_blank" rel="noopener" class="nc-soc" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+
+        <!-- Follow section: separate CSS grid, no Facebook -->
+        <div class="nc-follow-grid">
+          <span class="nc-follow-label">FOLLOW US</span>
+          <div class="nc-follow-links">
+            <a href="https://www.instagram.com/eighteightagency/" target="_blank" rel="noopener" class="nc-follow-link" aria-label="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               Instagram
             </a>
-            <a href="https://www.facebook.com/profile.php?id=61587175742097" target="_blank" rel="noopener" class="nc-soc" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              Facebook
-            </a>
-            <a href="https://www.linkedin.com/company/eighteightstudio" target="_blank" rel="noopener" class="nc-soc" aria-label="LinkedIn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="https://www.linkedin.com/company/eighteightstudio" target="_blank" rel="noopener" class="nc-follow-link" aria-label="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
           </div>
@@ -180,9 +159,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
-</body>
-</html>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
