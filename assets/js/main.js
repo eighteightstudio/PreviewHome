@@ -74,21 +74,7 @@ const lines = Array.from({ length: 22 }, () => ({
   requestAnimationFrame(drawBg);
 })();
 
-/* ══ CHIP SCROLL REVEAL ══ */
-const chipsSection = document.getElementById('chipsSection');
-const chips        = document.querySelectorAll('.chip');
-
-const chipObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Trigger all chips with staggered delays
-      chips.forEach(chip => chip.classList.add('visible'));
-      chipObserver.disconnect();
-    }
-  });
-}, { threshold: 0.2 });
-
-if (chipsSection) chipObserver.observe(chipsSection);
+/* ══ TICKER — no JS needed, pure CSS animation ══ */
 
 /* ══ NOTIFY FORM — wired to Supabase ══ */
 async function handleNotify(e) {
@@ -153,10 +139,8 @@ async function handleNotify(e) {
   }
 }
 
-/* ══ REDUCED MOTION ══ */
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('.hl,.status-pill,.subtext,.notify-box,.socials').forEach(el => {
+  document.querySelectorAll('.hl,.status-pill,.subtext,.notify-card').forEach(el => {
     el.style.opacity = '1'; el.style.transform = 'none'; el.style.animation = 'none';
   });
-  chips.forEach(c => c.classList.add('visible'));
 }
