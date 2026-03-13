@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Eight Eight Studio — Bold brands. Sharp digital. Coming soon." />
   <meta name="theme-color" content="#080808" />
-  <meta property="og:title" content="Eight Eight Studio — Coming Soon" />
-  <meta property="og:description" content="Bold brands. Sharp digital. Coming soon." />
-  <meta property="og:type" content="website" />
   <title>Eight Eight Studio — Coming Soon</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,15 +14,12 @@
 </head>
 <body>
 
-  <!-- Background canvas -->
   <canvas id="bgCanvas"></canvas>
-  <!-- Scanlines -->
   <div class="scanlines"></div>
 
-  <!-- ══ FLOATING GLASS HEADER — centre aligned ══ -->
+  <!-- ══ GLASS HEADER ══ -->
   <header class="header" id="header">
     <div class="header-glass">
-      <!-- Wordmark — left inside glass -->
       <div class="hg-wordmark">
         <span class="hg-88">88</span>
         <div class="hg-divider"></div>
@@ -34,17 +28,20 @@
           <span class="hg-bot">STUDIO</span>
         </div>
       </div>
-
-      <!-- Nav links — right inside glass -->
       <nav class="hg-nav">
-        <a href="https://www.instagram.com/eighteightagency/" target="_blank" rel="noopener" class="hg-link">Instagram</a>
-        <a href="https://www.linkedin.com/company/eighteightstudio" target="_blank" rel="noopener" class="hg-link">LinkedIn</a>
+        <a href="https://www.instagram.com/eighteightagency/" target="_blank" rel="noopener" class="hg-icon-link" aria-label="Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/eighteightstudio" target="_blank" rel="noopener" class="hg-icon-link" aria-label="LinkedIn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61587175742097" target="_blank" rel="noopener" class="hg-icon-link" aria-label="Facebook">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
       </nav>
     </div>
-
-    <!-- Theme toggle — floats outside glass at far right of header row -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Switch theme">
-      <span class="tt-icon" id="ttIcon">☀</span>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="ttIcon">☾</span>
     </button>
   </header>
 
@@ -52,59 +49,64 @@
   <main class="hero">
     <div class="hero-inner">
 
-      <!-- Status pill -->
       <div class="status-pill">
         <span class="sp-dot"></span>
-        <span class="sp-text">Under Development</span>
+        <span>Under Development</span>
       </div>
 
-      <!-- Headline -->
       <h1 class="headline">
         <span class="hl hl-1">We Build</span>
         <span class="hl hl-2"><em>Brands</em></span>
         <span class="hl hl-3">That Dominate.</span>
       </h1>
 
-      <!-- Subtext -->
       <p class="subtext">
         Eight Eight Studio is crafting a digital experience worth the wait.<br class="br-hide" />
         Branding · Web · Social · Motion — done boldly.
       </p>
 
-      <!-- Ticker -->
-      <div class="ticker">
-        <div class="ticker-track">
-          <span>COMING SOON</span><span class="tx">✦</span>
-          <span>EIGHT EIGHT STUDIO</span><span class="tx">✦</span>
-          <span>COMING SOON</span><span class="tx">✦</span>
-          <span>EIGHT EIGHT STUDIO</span><span class="tx">✦</span>
-          <span>COMING SOON</span><span class="tx">✦</span>
-          <span>EIGHT EIGHT STUDIO</span><span class="tx">✦</span>
-          <span>COMING SOON</span><span class="tx">✦</span>
-          <span>EIGHT EIGHT STUDIO</span><span class="tx">✦</span>
-        </div>
+      <!-- ══ SCROLL-REVEAL CHIPS ══ -->
+      <div class="chips-section" id="chipsSection">
+        <div class="chip" style="--d:0ms">COMING SOON</div>
+        <div class="chip accent-chip" style="--d:60ms">✦ 88 STUDIO</div>
+        <div class="chip" style="--d:120ms">BRANDING</div>
+        <div class="chip" style="--d:180ms">WEB DESIGN</div>
+        <div class="chip" style="--d:240ms">SOCIAL MEDIA</div>
+        <div class="chip" style="--d:300ms">MOTION</div>
+        <div class="chip" style="--d:360ms">IDENTITY</div>
+        <div class="chip" style="--d:420ms">STRATEGY</div>
+        <div class="chip" style="--d:480ms">KOLKATA · IN</div>
+        <div class="chip accent-chip" style="--d:540ms">GOING GLOBAL</div>
       </div>
 
       <!-- ══ NOTIFY FORM ══ -->
-      <div class="notify-box">
+      <div class="notify-box" id="notifyBox">
         <p class="nb-label">Get notified when we launch</p>
-        <form class="nb-form" onsubmit="handleNotify(event)">
-          <div class="nb-fields">
-            <input
-              type="email"
-              id="emailInput"
-              class="nb-input"
-              placeholder="your@email.com"
-              autocomplete="off"
-              required
-            />
-            <button type="submit" class="nb-btn" id="nbBtn">
-              <span id="nbBtnText">Notify Me</span>
-              <span class="nb-arrow">→</span>
-            </button>
+        <form class="nb-form" id="nbForm" onsubmit="handleNotify(event)">
+          <div class="nb-row">
+            <div class="nb-field">
+              <label class="nb-flabel" for="nameInput">Name</label>
+              <input type="text" id="nameInput" class="nb-input" placeholder="Your name" autocomplete="off" required />
+            </div>
+            <div class="nb-field">
+              <label class="nb-flabel" for="bizInput">Business / Brand</label>
+              <input type="text" id="bizInput" class="nb-input" placeholder="Your business (optional)" autocomplete="off" />
+            </div>
           </div>
+          <div class="nb-row nb-row-single">
+            <div class="nb-field">
+              <label class="nb-flabel" for="emailInput">Email</label>
+              <input type="email" id="emailInput" class="nb-input" placeholder="your@email.com" autocomplete="off" required />
+            </div>
+          </div>
+          <button type="submit" class="nb-btn" id="nbBtn">
+            <span id="nbBtnText">Notify Me</span>
+            <span class="nb-arrow">→</span>
+          </button>
         </form>
-        <p class="nb-success" id="nbSuccess">You're on the list. We'll be in touch. ✦</p>
+        <div class="nb-success" id="nbSuccess">
+          <span>✦</span><span>You're on the list. We'll be in touch.</span>
+        </div>
       </div>
 
       <!-- Socials -->
@@ -126,7 +128,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <span>© 2026 Eight Eight Studio. All Rights Reserved.</span>
