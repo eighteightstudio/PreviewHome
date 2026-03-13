@@ -1,98 +1,150 @@
 /**
  * Eight Eight Studio — main.js
- * Handles: notify form, cursor, nav scroll, subtle effects
+ * Theme toggle · Background canvas · Notify form
  */
 
 'use strict';
 
-/* ─── Notify Form ─── */
-function handleNotify() {
-  const input   = document.getElementById('emailInput');
-  const btn     = document.getElementById('notifyBtn');
-  const success = document.getElementById('notifySuccess');
-  const form    = document.querySelector('.notify-form');
+/* ══ THEME TOGGLE ══ */
+const html    = document.documentElement;
+const toggle  = document.getElementById('themeToggle');
+const ttIcon  = document.getElementById('ttIcon');
 
-  const email = input.value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Icons
+const ICON_DARK  = '☾';   // shown when in dark mode (click → go light)
+const ICON_LIGHT = '☀';   // shown when in light mode (click → go dark)
 
-  if (!emailRegex.test(email)) {
-    form.style.borderColor = '#e05555';
-    form.style.boxShadow   = '0 0 0 3px rgba(224, 85, 85, 0.12)';
-    input.focus();
+// Read saved preference or default to dark
+const saved = localStorage.getItem('88-theme') || 'dark';
+applyTheme(saved);
+
+toggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+function applyTheme(theme) {
+  html.setAttribute('data-theme', theme);
+  localStorage.setItem('88-theme', theme);
+  ttIcon.textContent = theme === 'dark' ? ICON_DARK : ICON_LIGHT;
+  // Update meta theme-color for mobile browser chrome
+  document.querySelector('meta[name="theme-color"]')
+    .setAttribute('content', theme === 'dark' ? '#080808' : '#f4f1ec');
+}
+
+/* ══ BACKGROUND CANVAS — animated geometric lines ══ */
+const canvas = document.getElementById('bgCanvas');
+const ctx    = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas, { passive: true });
+
+const LINES = 20;
+const lines = Array.from({ length: LINES }, () => ({
+  x1: Math.random() * innerWidth,
+  y1: Math.random() * innerHeight,
+  x2: Math.random() * innerWidth,
+  y2: Math.random() * innerHeight,
+  dx1: (Math.random() - 0.5) * 0.35,
+  dy1: (Math.random() - 0.5) * 0.35,
+  dx2: (Math.random() - 0.5) * 0.35,
+  dy2: (Math.random() - 0.5) * 0.35,
+  alpha: Math.random() * 0.2 + 0.04,
+  isAccent: Math.random() > 0.8,
+}));
+
+function drawBg() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const isDark = html.getAttribute('data-theme') === 'dark';
+
+  lines.forEach(l => {
+    // Move
+    l.x1 += l.dx1; l.y1 += l.dy1;
+    l.x2 += l.dx2; l.y2 += l.dy2;
+    // Bounce
+    if (l.x1 < 0 || l.x1 > canvas.width)  l.dx1 *= -1;
+    if (l.y1 < 0 || l.y1 > canvas.height) l.dy1 *= -1;
+    if (l.x2 < 0 || l.x2 > canvas.width)  l.dx2 *= -1;
+    if (l.y2 < 0 || l.y2 > canvas.height) l.dy2 *= -1;
+
+    let color;
+    if (l.isAccent) {
+      color = isDark
+        ? `rgba(232,255,71,${l.alpha})`
+        : `rgba(26,26,26,${l.alpha * 0.6})`;
+    } else {
+      color = isDark
+        ? `rgba(240,237,232,${l.alpha * 0.5})`
+        : `rgba(14,14,14,${l.alpha * 0.3})`;
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(l.x1, l.y1);
+    ctx.lineTo(l.x2, l.y2);
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = l.isAccent ? 1.2 : 0.7;
+    ctx.stroke();
+
+    if (l.isAccent) {
+      ctx.beginPath();
+      ctx.arc(l.x1, l.y1, 2, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+  });
+
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+/* ══ NOTIFY FORM ══ */
+function handleNotify(e) {
+  e && e.preventDefault();
+
+  const emailEl  = document.getElementById('emailInput');
+  const btn      = document.getElementById('nbBtn');
+  const btnText  = document.getElementById('nbBtnText');
+  const success  = document.getElementById('nbSuccess');
+  const fields   = document.querySelector('.nb-fields');
+
+  const email = emailEl.value.trim();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (!valid) {
+    fields.style.borderColor = '#ff5555';
+    fields.style.boxShadow   = '0 0 0 3px rgba(255,85,85,0.15)';
+    emailEl.focus();
     setTimeout(() => {
-      form.style.borderColor = '';
-      form.style.boxShadow   = '';
+      fields.style.borderColor = '';
+      fields.style.boxShadow   = '';
     }, 1800);
     return;
   }
 
   // Success state
   btn.disabled = true;
-  btn.querySelector('.btn-text').textContent = 'Done ✓';
-  btn.querySelector('.btn-arrow').style.display = 'none';
-  btn.style.background = '#5a8a5a';
-  btn.style.color = '#fff';
+  btnText.textContent = 'Done ✓';
+  fields.style.opacity = '0.5';
+  fields.style.pointerEvents = 'none';
+  success.classList.add('show');
 
-  input.disabled = true;
-  form.style.opacity = '0.6';
-
-  success.classList.add('visible');
-
-  // Optional: POST to a backend or form service
-  // fetch('/api/notify', { method: 'POST', body: JSON.stringify({ email }) });
+  // Wire to Formspree — uncomment and add your form ID:
+  // fetch('https://formspree.io/f/YOUR_ID', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ email })
+  // });
 }
 
-/* ─── Keyboard: Enter to notify ─── */
-document.getElementById('emailInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') handleNotify();
-});
-
-/* ─── Nav scroll effect ─── */
-const nav = document.getElementById('nav');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-  const current = window.scrollY;
-
-  if (current > 40) {
-    nav.style.background = 'rgba(10,10,10,0.85)';
-    nav.style.backdropFilter = 'blur(20px)';
-    nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-  } else {
-    nav.style.background = 'transparent';
-    nav.style.backdropFilter = 'none';
-    nav.style.borderBottom = 'none';
-  }
-
-  lastScroll = current;
-}, { passive: true });
-
-/* ─── Subtle parallax on orbs (mouse-driven) ─── */
-const orb1 = document.querySelector('.orb-1');
-const orb2 = document.querySelector('.orb-2');
-
-document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 2;
-  const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-  orb1.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
-  orb2.style.transform = `translate(${x * -15}px, ${y * -15}px)`;
-}, { passive: true });
-
-/* ─── Pause ticker on hover ─── */
-const bannerTrack = document.querySelector('.banner-track');
-bannerTrack.addEventListener('mouseenter', () => {
-  bannerTrack.style.animationPlayState = 'paused';
-});
-bannerTrack.addEventListener('mouseleave', () => {
-  bannerTrack.style.animationPlayState = 'running';
-});
-
-/* ─── Prefers reduced motion ─── */
+/* ══ REDUCED MOTION ══ */
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('[style*="animation"], .orb, .banner-track').forEach(el => {
-    el.style.animation = 'none';
-    el.style.opacity = '1';
+  document.querySelectorAll('.hl, .status-pill, .subtext, .ticker, .notify-box, .socials').forEach(el => {
+    el.style.opacity   = '1';
     el.style.transform = 'none';
+    el.style.animation = 'none';
   });
 }
